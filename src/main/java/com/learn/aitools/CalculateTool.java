@@ -29,7 +29,7 @@ public class CalculateTool {
      * 用于计算两个整数的商
      * @param a 第一个数
      * @param b 第二个数
-     * @return 差
+     * @return 商
      */
     @Tool(name = "divide", value = "用于计算两个整数的商")
     public Double divide(Double a, Double b) {

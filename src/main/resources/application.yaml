@@ -3,9 +3,20 @@ server:
 
 # 接入MongoDB数据库配置
 spring:
+  # MongoDB数据库配置
   data:
     mongodb:
       uri: mongodb://localhost:27017/chat_db # MongoDB连接URI
+  # MySQL数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/guiguxiaozhi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# mybatis-plus开启日志打印
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # langchain4j配置
 langchain4j:
@@ -30,9 +41,26 @@ langchain4j:
   # 接入阿里云百炼
   community:
     dashscope:
+      # 非流式文本模型
       chat-model:
         api-key: sk-e1ad181f5a0e44b2b0ae93fd7809af7b
         model-name: qwen-max
+      # 流式文本模型
+      streaming-chat-model:
+        api-key: sk-e1ad181f5a0e44b2b0ae93fd7809af7b
+        model-name: qwen-plus
+  # 配置嵌入文本模型
+  #集成阿里通义千问-通用文本向量-v3
+      embedding-model:
+        api-key: sk-e1ad181f5a0e44b2b0ae93fd7809af7b
+        model-name: text-embedding-v3
+
+pinecone:
+  api-key: pcsk_3EUnCb_Degdf38PecWGcBt67dGcwY28ioxALytqNuU4PDepM4JRg4xAXf2Zgmh4HepmEDP
+  index: xiaozhi-index
+  name-space: xiaozhi-namespace
+  cloud: AWS
+  region: us-east-1
 # The properties are the same as `QwenChatModel`
 # e.g.
 # langchain4j.community.dashscope.chat-model.temperature=0.7
