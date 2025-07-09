@@ -1,0 +1,47 @@
+server:
+  port: 8080 # 服务端口
+
+# 接入MongoDB数据库配置
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/chat_db # MongoDB连接URI
+
+# langchain4j配置
+langchain4j:
+  # 接入openai，deepseek使用的是openai的标准API
+  open-ai:
+    chat-model:
+      base-url: https://api.deepseek.com
+      api-key: sk-2fb2430d6e2f47fb9720d837a5d513df
+      model-name: deepseek-chat
+      # 应用程序发送给LLM的请求日志和响应日志，必须将系统的日志级别设置为DEBUG，否则不会打印日志
+      log-requests: true
+      log-responses: true
+
+  # 接入ollama
+  ollama:
+    chat-model:
+      base-url: http://localhost:11434
+      model-name: qwen3:1.7b
+      temperature: 0.5
+      timeout: PT60S
+
+  # 接入阿里云百炼
+  community:
+    dashscope:
+      chat-model:
+        api-key: sk-e1ad181f5a0e44b2b0ae93fd7809af7b
+        model-name: qwen-max
+# The properties are the same as `QwenChatModel`
+# e.g.
+# langchain4j.community.dashscope.chat-model.temperature=0.7
+# langchain4j.community.dashscope.chat-model.max-tokens=4096
+# 日志级别配置
+logging:
+  level:
+    root: INFO
+
+# 小智助手配置
+xiaozhi:
+  max-messages: 20 # 最大消息数
